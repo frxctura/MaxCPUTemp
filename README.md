@@ -4,7 +4,7 @@ A program that will automatically shut your PC down within a set time once a set
 
 # Usage:
 
-Download from Releases / Build from Source <br>
+Download from Releases / Build from Source (both will appear under TempShutDown in Task Manager, sorry for the oopsie) <br>
 Open<br>
 Set Temperature<br>
 Set Time<br>
