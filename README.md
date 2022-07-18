@@ -4,8 +4,8 @@ A program that will automatically shut your PC down within a set time once a set
 
 # Usage:
 
-Download from Releases / Build from Source
-Open
-Set Temperature
-Set Time
+Download from Releases / Build from Source (will be under the name TempShutDown due to Dev Stuff) <br>
+Open<br>
+Set Temperature<br>
+Set Time<br>
 Done!
