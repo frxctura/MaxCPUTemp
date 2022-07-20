@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using OpenHardwareMonitor.Hardware;
 using System.Diagnostics;
 namespace Get_CPU_Temp
@@ -30,13 +30,11 @@ namespace Get_CPU_Temp
         {
             Console.WriteLine("Enter the time in which your system will shut down: ");
             enteredTime = int.Parse(Console.ReadLine());
+            Console.Clear();
+            Console.CursorVisible = false;
         }
-        static void GrabInfo()
+        static void GrabInfo(ref Computer computer, ref UpdateVisitor update)
         {
-            UpdateVisitor update = new UpdateVisitor();
-            Computer computer = new Computer();
-            computer.Open();
-            computer.CPUEnabled = true;
             computer.Accept(update);
             for (int i = 0; i < computer.Hardware.Length; i++)
             {
@@ -46,7 +44,7 @@ namespace Get_CPU_Temp
                     {
                         if (computer.Hardware[i].Sensors[j].SensorType == SensorType.Temperature)
                         {
-                            Console.WriteLine(computer.Hardware[i].Sensors[j].Value.ToString() + "\r");
+                            Console.Write(computer.Hardware[i].Sensors[j].Value.ToString() + "\r");
                             if (computer.Hardware[i].Sensors[j].Value > enteredTemperature)
                             {
                                 ShutDown();
@@ -58,11 +56,15 @@ namespace Get_CPU_Temp
         }
         static void Main(string[] args)
         {
+            UpdateVisitor update = new UpdateVisitor();
+            Computer computer = new Computer();
+            computer.Open();
+            computer.CPUEnabled = true;
             EnterTemp();
             EnterTime();
             while (true)
             {
-                GrabInfo();
+                GrabInfo(ref computer, ref update);
             }
         }
         static void ShutDown()
